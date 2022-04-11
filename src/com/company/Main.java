@@ -10,27 +10,17 @@ public class Main {
     public static void main(String[] args) {
         boolean cont = true;
         while (cont) {
-            System.out.println("Choose you difficulty");
             Scanner scan = new Scanner(System.in);
+            System.out.println("Choose you difficulty");
+            while (!scan.hasNextInt()) {
+                System.out.println("Thats not a number please try again");
+                scan.next();
+            }
             int difficulty = scan.nextInt();
             Number number = new Number();
             int wantedNum = number.createNumber(difficulty);
-            System.out.println(wantedNum);
-            boolean isFound = true;
-            while (isFound) {
-                System.out.println("Guess the Number");
-                int guessedNum = scan.nextInt();
-                if (guessedNum > wantedNum) {
-                    System.out.println("The number you chose is too high");
-                }
-                if (guessedNum < wantedNum) {
-                    System.out.println("The number you chose is too low");
-                }
-                if (guessedNum == wantedNum) {
-                    System.out.println("You found the number");
-                    isFound = false;
-                }
-            }
+            Find find = new Find();
+            find.findNumber(wantedNum);
             System.out.println("Play agian?  Y | N");
             String answer = scan.next();
             if(answer.equals("N")) {
